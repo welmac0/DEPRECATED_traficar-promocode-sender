@@ -3,6 +3,7 @@ from selenium.webdriver.common.by import By
 import os
 from twilio.rest import Client
 from datetime import date
+from apscheduler.schedulers.blocking import BlockingScheduler
 import re
 
 PATTERN = r"[‘'\"]([A-Z]+)[‘'\"]"
@@ -14,6 +15,7 @@ TWILIO_AUTH = os.getenv("TWILIO_AUTH")
 PHONENUMBER = os.getenv("PHONENUMBER")
 TWILIO_SID = os.getenv("TWILIO_SID")
 TODAY = date.today()
+sched = BlockingScheduler()
 
 chrome_options = webdriver.ChromeOptions()
 chrome_options.add_experimental_option("detach", True)
@@ -74,6 +76,9 @@ def send_message(code, found_date, found_time):
 
     return my_message.status
 
-
-if __name__ == "__main__":
+@sched.scheduled_job("cron", day_of_week='mon-sun', hour=16)
+def scheduled_job():
     get_data()
+
+
+sched.start()
