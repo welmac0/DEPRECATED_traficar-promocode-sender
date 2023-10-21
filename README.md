@@ -1,0 +1,2 @@
+# traficar-promocode-sender
+Automated check of @traficar_pl account on the instagram and sending me an sms with the promo code. I wan't to minimise time spent on the Social Media and pay less for carsharing.
