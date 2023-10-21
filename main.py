@@ -18,6 +18,12 @@ TODAY = date.today()
 chrome_options = webdriver.ChromeOptions()
 chrome_options.add_experimental_option("detach", True)
 
+### HAROKU ###
+chrome_options.add_argument("--headless")
+chrome_options.add_argument("--disable-dev-shm-usage")
+chrome_options.add_argument("--no-sandbox")
+chrome_options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
+#### #### ####
 
 def check_validity(post_date):
     today_dm_raw = str(TODAY).split("-")
