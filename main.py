@@ -3,7 +3,6 @@ from selenium.webdriver.common.by import By
 import os
 from twilio.rest import Client
 from datetime import date
-from apscheduler.schedulers.blocking import BlockingScheduler
 import re
 
 PATTERN = r"[‘'\"]([A-Z]+)[‘'\"]"
@@ -15,17 +14,16 @@ TWILIO_AUTH = os.getenv("TWILIO_AUTH")
 PHONENUMBER = os.getenv("PHONENUMBER")
 TWILIO_SID = os.getenv("TWILIO_SID")
 TODAY = date.today()
-sched = BlockingScheduler()
 
 chrome_options = webdriver.ChromeOptions()
 chrome_options.add_experimental_option("detach", True)
 
-### HAROKU ###
-chrome_options.add_argument("--headless")
-chrome_options.add_argument("--disable-dev-shm-usage")
-chrome_options.add_argument("--no-sandbox")
-chrome_options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
-#### #### ####
+### Heroku chrome config ###
+# chrome_options.add_argument("--headless")
+# chrome_options.add_argument("--disable-dev-shm-usage")
+# chrome_options.add_argument("--no-sandbox")
+# chrome_options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
+
 
 def check_validity(post_date):
     today_dm_raw = str(TODAY).split("-")
@@ -76,9 +74,6 @@ def send_message(code, found_date, found_time):
 
     return my_message.status
 
-@sched.scheduled_job("cron", day_of_week='mon-sun', hour=16)
-def scheduled_job():
+
+if __name__ == "__main__":
     get_data()
-
-
-sched.start()
