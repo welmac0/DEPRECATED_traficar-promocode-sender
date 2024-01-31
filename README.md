@@ -1,10 +1,9 @@
 # traficar-promocode-sender
-Automated check of @traficar_pl account on the instagram and sending me an sms with the promo code. I want to minimise time spent on the Social Media and pay less for carsharing.
+This script's goal was to automates the checking of @traficar_pl account on Instagram and sending me an SMS with the promo code. My goal was to minimize time spent on social media and pay less for carsharing.
 
-EDIT: 1.12.23 - Doesn't work anymore because Instagram doesn't show description of the posts if you open a profile. You have to <b><i>log in </i></b>, select a photo and then download a description.
-    That disables me from this, because I log in via FB, and have 2FA at FB. :(
+Edit: 1.12.23 - The script no longer works because Instagram doesn't display post descriptions when you open a profile. Now, you need to log in, select a photo, and then download the description. Unfortunately, this poses a challenge for me since I log in via Facebook, and Facebook has two-factor authentication (2FA).
 
 ## Config
-Just upload this bunch of files to repo on Heroku, then create a script which initiates the script, add it to scheduler via this add-on:
+Simply upload these files to a repository on Heroku. Then, create a script that initializes the process and add it to the scheduler using this add-on: 
 https://devcenter.heroku.com/articles/scheduler
-and that's it.
+That's it.
